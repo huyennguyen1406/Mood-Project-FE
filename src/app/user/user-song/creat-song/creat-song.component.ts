@@ -8,8 +8,6 @@ import {AngularFireStorage} from '@angular/fire/storage';
 import {finalize} from 'rxjs/operators';
 import {Observable} from "rxjs";
 import * as moment from "moment/moment";
-import {FileUpload} from "../../../model/file-upload";
-import {FileUploadService} from "../../../service/file-upload";
 
 declare var Swal: any;
 
@@ -27,18 +25,15 @@ export class CreatSongComponent implements OnInit {
   avatarUrlSong: string;
   mp3UrlSong: string;
   selectImg: any = null;
+  selectFile: any = null;
 
   downloadImgURL?: Observable<string>;
   downloadAudURL?: Observable<string>;
-  currentFileUpload?: FileUpload;
-  percentage = 0;
-  selectedFiles?: FileList;
 
   constructor(private formBuilder: FormBuilder,
               private songService: SongService,
               private userService: UsersService,
               private httpService: HttpService,
-              private uploadService : FileUploadService,
               private storage: AngularFireStorage) {
   }
 
@@ -153,23 +148,6 @@ export class CreatSongComponent implements OnInit {
   //     ).subscribe();
   //   }
   // }
-  selectFile(event: any): void {
-    this.selectedFiles = event.target.files;
-    if (this.selectedFiles) {
-      // @ts-ignore
-      const file: File | null = this.selectedFiles.item(0);
-      this.selectedFiles = undefined;
-      if (file) {
-        this.currentFileUpload = new FileUpload(file);
-        this.uploadService.pushFileToStorage(this.currentFileUpload).subscribe(percentage => {
-          this.percentage = Math.round(percentage ? percentage : 0);
-
-        }, error => {console.log(error);
-
-        });
-      }
-    }
-  }
 
   submitFile() {
     var n = Date.now();
