@@ -42,7 +42,7 @@ export class UserPlaylistComponent implements OnInit {
       });
       Swal.fire({
         icon: 'success',
-        title: res.message,
+        title: 'Tạo thành công',
         showConfirmButton: true,
         timer: 3000
       });

@@ -53,7 +53,7 @@ export class UserMysongComponent implements OnInit {
   }
 
   onDeleteSong(idSong): void {
-    if (confirm('Are you sure?')) {
+    if (confirm('Bạn có chắc muốn xóa bài hát?')) {
       this.userid = Number(this.httpService.getID());
       this.songService.deleteSong(idSong).subscribe(res => {
         this.songService.getSongByUser(this.userid).subscribe(data => {
@@ -61,7 +61,7 @@ export class UserMysongComponent implements OnInit {
         });
         Swal.fire({
           icon: 'success',
-          title: res.message,
+          title: 'Xóa bài hát thành công',
           showConfirmButton: true,
           timer: 3000
         });
@@ -81,7 +81,7 @@ export class UserMysongComponent implements OnInit {
       });
       Swal.fire({
         icon: 'success',
-        title: res.message,
+        title: 'Tạo thành công',
         showConfirmButton: true,
         timer: 3000
       });
@@ -89,7 +89,7 @@ export class UserMysongComponent implements OnInit {
   }
 
   onDeletePlaylist(idPlaylist): void {
-    if (confirm('Are you sure?')) {
+    if (confirm('Bạn có chắc muốn xóa playlist?')) {
       this.userid = Number(this.httpService.getID());
       this.playlistService.deletePlaylist(idPlaylist).subscribe(res => {
         this.playlistService.getPlaylistByUser(this.userid).subscribe(data => {
@@ -97,7 +97,7 @@ export class UserMysongComponent implements OnInit {
         });
         Swal.fire({
           icon: 'success',
-          title: res.message,
+          title: 'Xóa playlist thành công',
           showConfirmButton: true,
           timer: 3000
         });
