@@ -42,12 +42,10 @@ export class RegisterComponent implements OnInit {
       password: this.registerForm.value.password
     };
     this.loginService.register(user).subscribe(data => {
-      // tslint:disable-next-line:triple-equals
-      if (data.message != null) {
+        this.message = data;
         // @ts-ignore
         setTimeout(this.router.navigate(['login'], 3000));
-      }
-    },
+      },
       error => {
         this.message = error.error.message;
       });

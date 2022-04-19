@@ -5,14 +5,14 @@
 export const environment = {
   production: false,
   firebaseConfig : {
-    apiKey: "AIzaSyBlgU3TmRPfSNMlqQNZwlnEAVT9ixh4r5g",
-    authDomain: "demoangular01.firebaseapp.com",
+    apiKey: 'AIzaSyBlgU3TmRPfSNMlqQNZwlnEAVT9ixh4r5g',
+    authDomain: 'demoangular01.firebaseapp.com',
     databaseURL: 'https://demoangular01-default-rtdb.firebaseio.com/',
-    projectId: "demoangular01",
-    storageBucket: "demoangular01.appspot.com",
-    messagingSenderId: "93237334510",
-    appId: "1:93237334510:web:95cea5ce7633974753beff",
-    measurementId: "G-TFQP5Z0LS8"
+    projectId: 'demoangular01',
+    storageBucket: 'demoangular01.appspot.com',
+    messagingSenderId: '93237334510',
+    appId: '1:93237334510:web:95cea5ce7633974753beff',
+    measurementId: 'G-TFQP5Z0LS8'
   },
   apiUrl: 'http://localhost:8080'
   // apiUrl: 'http://192.168.2.243:8080'
