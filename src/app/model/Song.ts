@@ -1,8 +1,6 @@
 import {User} from './User';
 import {Playlist} from './Playlist';
-import {Author} from "./Author";
-import {Category} from "./Category";
-import {Tag} from "./Tag";
+import {Tag} from './Tag';
 
 export interface Song {
   idSong?: number;

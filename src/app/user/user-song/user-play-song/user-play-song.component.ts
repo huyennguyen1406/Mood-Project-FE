@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {Song} from '../../../model/Song';
 import {SongService} from '../../../service/song.service';
 import {ActivatedRoute} from '@angular/router';
@@ -33,6 +33,8 @@ export class UserPlaySongComponent implements OnInit {
   form: FormGroup;
   p: number;
   totalLike: number;
+  totalView: number;
+
 
   constructor(private userService: UsersService,
               private songService: SongService,
@@ -65,11 +67,6 @@ export class UserPlaySongComponent implements OnInit {
       this.commentSong = comments;
     });
 
-
-    // this.likeSongService.getAllLikeSong().subscribe(res => {
-    //   this.likeSongs = res;
-    // });
-
     // Lấy các bài hát bạn được like nhiều nhất - DONE
     this.songService.getSongByLike().subscribe(res => {
       this.songList = res;
@@ -83,6 +80,8 @@ export class UserPlaySongComponent implements OnInit {
     // Lấy bài hát, dùng để chạy bài hát - DONE
     this.songService.getSongById(this.id).subscribe(res => {
       this.song = res;
+      // this.totalView = this.song.numberOfViewSong;
+      console.log(this.totalView);
       Amplitude.init({
         songs: [
           {
@@ -92,13 +91,32 @@ export class UserPlaySongComponent implements OnInit {
         ],
       });
     });
+
+    let currentTime = 0;
+    let totalTime = 0;
+    console.log(totalTime);
+    this.totalView = setInterval(() => {
+      // @ts-ignore
+      currentTime = document.getElementById('audioSong').currentTime;
+      // @ts-ignore
+      totalTime = document.getElementById('audioSong').duration;
+      console.log(currentTime);
+      // console.log(totalTime);
+      // @ts-ignore
+      if (currentTime >= totalTime / 10){
+        this.songService.increaseViewSong(this.song.idSong).subscribe(() => {
+          console.log('Increase Success');
+        });
+        clearInterval(this.totalView);
+      }
+    }, 1000);
   }
 
   // tslint:disable-next-line:typedef
   likeSong(idUser: number, idSong: number) {
-    this.likeSongService.updateLikeSong(idUser, idSong).subscribe((countLike) =>{
+    this.likeSongService.updateLikeSong(idUser, idSong).subscribe((countLike) => {
       this.totalLike = countLike;
-    })
+    });
   }
 
   // tslint:disable-next-line:typedef
@@ -154,6 +172,5 @@ export class UserPlaySongComponent implements OnInit {
       this.commentSong = res;
     });
   }
-
 
 }
