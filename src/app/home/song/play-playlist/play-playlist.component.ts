@@ -30,13 +30,13 @@ export class PlayPlaylistComponent implements OnInit {
     this.id = Number(this.router.snapshot.paramMap.get('id'));
     this.commentPlaylistService.getTotalLikePlaylist(this.id).subscribe(countLike => {
       this.totalLike = countLike;
-    })
+    });
     this.commentPlaylistService.getCommentByPlaylist(this.id).subscribe(comments => {
       this.commentPlaylist = comments;
-      console.log(this.commentPlaylist)
-      console.log(comments)
+      console.log(this.commentPlaylist);
+      console.log(comments);
     }, error => {
-      console.log(error)
+      console.log(error);
     });
     this.playlistService.getPlaylistById(this.id).subscribe(res => {
       this.songList = res.songs;
