@@ -30,7 +30,7 @@ export class UserPlaylistComponent implements OnInit {
     this.playlistService.getPlaylistById(this.idPlaylist).subscribe(res => {
       this.playlist = res;
       this.songList = res.songs;
-      console.log(res.songs[1].user.name)
+      console.log(res.songs[1].user.name);
     });
   }
 

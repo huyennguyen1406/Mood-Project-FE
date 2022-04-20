@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {Router} from '@angular/router';
 import {LoginService} from '../../service/login.service';
@@ -13,9 +13,12 @@ declare var Swal: any;
 })
 export class RegisterComponent implements OnInit {
   registerForm: FormGroup;
+  message = '';
+
   constructor(private fb: FormBuilder,
               private loginService: LoginService,
-              private router: Router) { }
+              private router: Router) {
+  }
 
   ngOnInit(): void {
     this.registerForm = this.fb.group({
@@ -29,7 +32,7 @@ export class RegisterComponent implements OnInit {
   }
 
   // tslint:disable-next-line:typedef
-  register(){
+  register() {
     const user = {
       name: this.registerForm.value.name,
       address: this.registerForm.value.address,
@@ -38,18 +41,13 @@ export class RegisterComponent implements OnInit {
       username: this.registerForm.value.username,
       password: this.registerForm.value.password
     };
-    this.loginService.register(user).subscribe(res => {
-      // tslint:disable-next-line:triple-equals
-      if (res.message != null) {
-        this.router.navigate(['login']);
-      } else {
-        Swal.fire({
-          icon: 'error',
-          title: 'Oops...',
-          text: res.message,
-        });
-      }
-    });
+    this.loginService.register(user).subscribe(data => {
+        // console.log(data);
+        this.message = data.message;
+        console.log(this.message);
+    },
+      error => {
+        this.message = 'Tài khoản hoặc mật khẩu không đúng yêu cầu. Vui lòng đăng ký lại';
+      });
   }
-
 }

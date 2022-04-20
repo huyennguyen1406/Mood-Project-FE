@@ -14,7 +14,7 @@ declare var Swal: any;
 export class LoginComponent implements OnInit {
   isLoggedIn = false;
   isLoginFailed = false;
-  errorMessage = '';
+  message = '';
   roles: string[] = [];
 
   form: any = {
@@ -41,10 +41,11 @@ export class LoginComponent implements OnInit {
         this.isLoginFailed = false;
         this.isLoggedIn = true;
         this.roles = this.tokenStorage.getUser().roles;
-        this.router.navigate(['/home']);
+        // @ts-ignore
+        setTimeout( this.router.navigate(['/home']), 3000);
       },
-      err => {
-        this.errorMessage = 'Please try again !';
+      data => {
+        this.message = data.error.message;
         this.isLoginFailed = true;
       }
     );

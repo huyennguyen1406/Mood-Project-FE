@@ -38,7 +38,7 @@ export class CreatSongComponent implements OnInit {
               private songService: SongService,
               private userService: UsersService,
               private httpService: HttpService,
-              private uploadService : FileUploadService,
+              private uploadService: FileUploadService,
               private storage: AngularFireStorage) {
   }
 
@@ -164,7 +164,8 @@ export class CreatSongComponent implements OnInit {
         this.uploadService.pushFileToStorage(this.currentFileUpload).subscribe(percentage => {
           this.percentage = Math.round(percentage ? percentage : 0);
 
-        }, error => {console.log(error);
+        }, error => {
+          console.log(error);
 
         });
       }
