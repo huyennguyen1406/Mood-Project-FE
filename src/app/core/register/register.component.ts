@@ -42,14 +42,12 @@ export class RegisterComponent implements OnInit {
       password: this.registerForm.value.password
     };
     this.loginService.register(user).subscribe(data => {
-      // tslint:disable-next-line:triple-equals
-      if (data.message != null) {
-        // @ts-ignore
-        setTimeout(this.router.navigate(['login'], 3000));
-      }
+        // console.log(data);
+        this.message = data.message;
+        console.log(this.message);
     },
       error => {
-        this.message = error.error.message;
+        this.message = 'Tài khoản hoặc mật khẩu không đúng yêu cầu. Vui lòng đăng ký lại';
       });
   }
 }

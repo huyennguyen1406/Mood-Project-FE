@@ -94,14 +94,13 @@ export class UserPlaySongComponent implements OnInit {
 
     let currentTime = 0;
     let totalTime = 0;
-    console.log(totalTime);
     this.totalView = setInterval(() => {
       // @ts-ignore
       currentTime = document.getElementById('audioSong').currentTime;
       // @ts-ignore
       totalTime = document.getElementById('audioSong').duration;
       console.log(currentTime);
-      // console.log(totalTime);
+      console.log(totalTime);
       // @ts-ignore
       if (currentTime >= totalTime / 10){
         this.songService.increaseViewSong(this.song.idSong).subscribe(() => {
