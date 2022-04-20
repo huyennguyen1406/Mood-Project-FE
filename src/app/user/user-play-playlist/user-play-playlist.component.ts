@@ -4,7 +4,6 @@ import {PlaylistService} from '../../service/playlist.service';
 import {ActivatedRoute} from '@angular/router';
 import {Playlist} from '../../model/Playlist';
 import {LikeplaylistService} from '../../service/likeplaylist.service';
-import {LikePlaylist} from '../../model/LikePlaylist';
 import {UsersService} from '../../service/users.service';
 import {HttpService} from '../../service/http.service';
 import {CommentplaylistService} from '../../service/commentplaylist.service';
@@ -50,9 +49,10 @@ export class UserPlayPlaylistComponent implements OnInit {
 
     this.likePlaylistService.getTotalLike(this.idPlaylist).subscribe(countLike => {
       this.totalLike = countLike;
-    })
+    });
 
     this.commentsongService.getCommentByPlaylist(this.idPlaylist).subscribe(res => {
+      // tslint:disable-next-line:prefer-for-of
       for (let i = 0; i < res.length; i++) {
         this.commentplaylist.unshift(res[i]);
       }
@@ -377,6 +377,6 @@ export class UserPlayPlaylistComponent implements OnInit {
   likePlaylist(idUser, idPlaylist) {
     this.likePlaylistService.updateLikePlaylist(idUser, idPlaylist).subscribe(countLike => {
       this.totalLike = countLike;
-    })
+    });
   }
 }
