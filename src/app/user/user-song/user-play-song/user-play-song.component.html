@@ -43,12 +43,12 @@
             <div id="white-player-controls">
               <div class="amplitude-repeat" id="repeat"></div>
               <div class="amplitude-prev" id="previous"></div>
-              <div class="amplitude-play-pause" id="play-pause"></div>
-
+              <div class="amplitude-play-pause" id="play-pause" (click)="playMusic()"></div>
               <div class="amplitude-next" id="next"></div>
             </div>
             <div>
-              <audio id="audioSong" src="{{song.mp3UrlSong}}" controls></audio>
+              <audio id="audioSong" src="{{song.mp3UrlSong}}" controls preload="none" hidden>
+              </audio>
             </div>
           </div>
         </div>

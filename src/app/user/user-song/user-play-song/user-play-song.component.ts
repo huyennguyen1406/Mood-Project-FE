@@ -102,7 +102,7 @@ export class UserPlaySongComponent implements OnInit {
       console.log(currentTime);
       console.log(totalTime);
       // @ts-ignore
-      if (currentTime >= totalTime / 10){
+      if (currentTime >= totalTime / 10) {
         this.songService.increaseViewSong(this.song.idSong).subscribe(() => {
           console.log('Increase Success');
         });
@@ -126,7 +126,7 @@ export class UserPlaySongComponent implements OnInit {
       songCommentSong: this.song
     };
     this.commentSongService.updateCommentSong(comment).subscribe(res => {
-      this.commentSongService.getCommentBySong(this.song.idSong).subscribe( data => {
+      this.commentSongService.getCommentBySong(this.song.idSong).subscribe(data => {
         this.commentSong = data;
         this.form.reset();
       });
@@ -160,7 +160,7 @@ export class UserPlaySongComponent implements OnInit {
       Amplitude.init({
         songs: [
           {
-            url: this.song.mp3UrlSong,
+            url: this.song.mp3UrlSong, // sửa ở đây
             cover_art_url: this.song.avatarUrlSong
           }
         ],
@@ -172,4 +172,23 @@ export class UserPlaySongComponent implements OnInit {
     });
   }
 
+  // tslint:disable-next-line:typedef
+  playMusic() {
+    const yourAudio = document.getElementById('audioSong');
+    // @ts-ignore
+    yourAudio.volume = 0;
+    // const ctr = document.getElementById('play-pause');
+    // tslint:disable-next-line:prefer-const
+    // let pause = document.getElementById('play-pause').innerHTML;
+    // @ts-ignore
+    console.log(yourAudio.paused);
+    // @ts-ignore
+    if (yourAudio.paused){
+      // @ts-ignore
+      yourAudio.play();
+    } else {
+      // @ts-ignore
+      yourAudio.pause();
+    }
+  }
 }
