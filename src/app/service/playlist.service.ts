@@ -39,8 +39,8 @@ export class PlaylistService {
     return this.http.get<Playlist[]>(API_URL + '/home/playlist/list/' + idUser, this.httpService.getHttp());
   }
 
-  createPlaylist(playlist: Playlist): Observable<any> {
-    return this.http.post(API_URL + '/playlist', playlist, this.httpService.getHttp());
+  createPlaylist(idUser: number, playlist: Playlist): Observable<any> {
+    return this.http.post(API_URL + `/home/playlist/${idUser}`, playlist, this.httpService.getHttp());
   }
 
   updatePlaylist(playlist: Playlist): Observable<any> {
