@@ -57,9 +57,9 @@ export class CreatSongComponent implements OnInit {
 
   // tslint:disable-next-line:typedef
   onSubmit() {
-    const now = new Date()
+    const now = new Date();
     const dateConvert = moment(now).format('yyyy-MM-DD');
-    console.log(dateConvert)
+    console.log(dateConvert);
     const song = {
       nameSong: this.songForm.value.nameSong,
       descriptionSong: this.songForm.value.descriptionSong,
@@ -69,7 +69,7 @@ export class CreatSongComponent implements OnInit {
       user: this.user,
       dateCreateSong: dateConvert
     };
-    console.log(song)
+    console.log(song);
     this.songService.createSong(song).subscribe(res => {
       Swal.fire({
         position: 'center',
@@ -82,24 +82,8 @@ export class CreatSongComponent implements OnInit {
     });
   }
 
-  // tslint:disable-next-line:typedef
-  // submitAvatar() {
-  //   this.submitFile();
-  //   if (this.selectImg !== null) {
-  //     const filePath = `avatarsong/${this.selectImg.name.split('.').slice(0, -1).join('.')}_${new Date().getTime()}`;
-  //     const fileRef = this.storage.ref(filePath);
-  //     this.storage.upload(filePath, this.selectImg).snapshotChanges().pipe(
-  //       finalize(() => {
-  //         fileRef.getDownloadURL().subscribe(url => {
-  //           this.avaUrl = url;
-  //         });
-  //       })
-  //     ).subscribe();
-  //   }
-  // }
-
   submitAvatar() {
-    var n = Date.now();
+    const n = Date.now();
     // @ts-ignore
     const file = event.target.files[0];
     const filePath = `RoomsImages/${n}`;
@@ -113,14 +97,14 @@ export class CreatSongComponent implements OnInit {
             this.avatarUrlSong = url;
           }
           console.log(this.avatarUrlSong);
-        })
+        });
       })
     )
       .subscribe(url => {
         if (url) {
           console.log(url);
         }
-      })
+      });
   }
 
   // tslint:disable-next-line:typedef
@@ -133,24 +117,8 @@ export class CreatSongComponent implements OnInit {
     }
   }
 
-  // tslint:disable-next-line:typedef
-  // submitFile() {
-  //   if (this.selectFile !== null) {
-  //     const filePath = `file/${this.selectFile.name.split('.').slice(0, -1).join('.')}_${new Date().getTime()}`;
-  //     const fileRef = this.storage.ref(filePath);
-  //     this.storage.upload(filePath, this.selectFile).snapshotChanges().pipe(
-  //       finalize(() => {
-  //         fileRef.getDownloadURL().subscribe(url => {
-  //           this.fileUrl = url;
-  //           this.onSubmit();
-  //         });
-  //       })
-  //     ).subscribe();
-  //   }
-  // }
-
   submitFile() {
-    var n = Date.now();
+    const n = Date.now();
     // @ts-ignore
     const file = event.target.files[0];
     const filePath = `RoomsAudios/${n}`;
@@ -164,14 +132,14 @@ export class CreatSongComponent implements OnInit {
             this.mp3UrlSong = url;
           }
           console.log(this.mp3UrlSong);
-        })
+        });
       })
     )
       .subscribe(url => {
         if (url) {
           console.log(url);
         }
-      })
+      });
   }
 
   // tslint:disable-next-line:typedef
