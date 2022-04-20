@@ -62,9 +62,9 @@ export class CreatSongComponent implements OnInit {
 
   // tslint:disable-next-line:typedef
   onSubmit() {
-    const now = new Date()
+    const now = new Date();
     const dateConvert = moment(now).format('yyyy-MM-DD');
-    console.log(dateConvert)
+    console.log(dateConvert);
     const song = {
       nameSong: this.songForm.value.nameSong,
       descriptionSong: this.songForm.value.descriptionSong,
