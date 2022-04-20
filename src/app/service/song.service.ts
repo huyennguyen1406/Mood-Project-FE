@@ -25,7 +25,7 @@ export class SongService {
   }
 
   getAllSongsLikeMost(): Observable<Song[]> {
-    return this.http.get<Song[]> (API_URL + '/home/song/like-most')
+    return this.http.get<Song[]> (API_URL + '/home/song/like-most');
   }
 
   // Lấy bài hát theo Id
@@ -43,7 +43,7 @@ export class SongService {
   }
 
   getSongByName(search: string): Observable<Song[]> {
-    let params = new HttpParams().set('search', search);
+    const params = new HttpParams().set('search', search);
     return this.http.get<Song[]>(API_URL + '/home/song/search' , {params});
   }
 

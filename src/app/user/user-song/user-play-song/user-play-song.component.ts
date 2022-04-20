@@ -96,9 +96,9 @@ export class UserPlaySongComponent implements OnInit {
 
   // tslint:disable-next-line:typedef
   likeSong(idUser: number, idSong: number) {
-    this.likeSongService.updateLikeSong(idUser, idSong).subscribe((countLike) =>{
+    this.likeSongService.updateLikeSong(idUser, idSong).subscribe((countLike) => {
       this.totalLike = countLike;
-    })
+    });
   }
 
   // tslint:disable-next-line:typedef
