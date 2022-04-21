@@ -6,9 +6,9 @@ import {HttpService} from '../../service/http.service';
 import {AngularFireStorage} from '@angular/fire/storage';
 import {finalize} from 'rxjs/operators';
 import {Role} from '../../model/Role';
-import firebase from "firebase";
-import {User} from "../../model/User";
-import {Observable} from "rxjs";
+import firebase from 'firebase';
+import {User} from '../../model/User';
+import {Observable} from 'rxjs';
 declare var Swal: any;
 @Component({
   selector: 'app-user-profile',
@@ -63,12 +63,13 @@ export class UserProfileComponent implements OnInit {
       address: this.userForm.value.address,
       phone: this.userForm.value.phone,
       avatarURL: this.avatarURL,
-      role: this.user.role
+      role: this.user.role,
+      statusActive: true
     };
     this.userService.updateUser(user1.id, user1).subscribe(res => {
       Swal.fire({
         icon: 'success',
-        title: 'Cập nhật thành công',
+        title: 'Cập nhật profile thành công',
         showConfirmButton: true,
         timer: 3000
       });
@@ -77,29 +78,29 @@ export class UserProfileComponent implements OnInit {
 
   // tslint:disable-next-line:typedef
   sendToFirebase(){
-    var n = Date.now();
+    const n = Date.now();
     // @ts-ignore
     const file = event.target.files[0];
     const filePath = `RoomsImages/${n}`;
     const fileRef = this.storage.ref(filePath);
     const task = this.storage.upload(`RoomsImages/${n}`, file);
     task.snapshotChanges().pipe(
-      finalize(() =>{
+      finalize(() => {
         this.downloadImgURL = fileRef.getDownloadURL();
         this.downloadImgURL.subscribe(url => {
           if (url){
             this.avatarURL = url;
           }
           console.log(this.avatarURL);
-          console.log(this.user)
-        })
+          console.log(this.user);
+        });
       })
     )
-      .subscribe(url =>{
+      .subscribe(url => {
         if (url){
           console.log(url);
         }
-      })
+      });
   }
 
   // tslint:disable-next-line:typedef

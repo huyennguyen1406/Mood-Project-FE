@@ -6,10 +6,10 @@ import {UsersService} from '../../../service/users.service';
 import {HttpService} from '../../../service/http.service';
 import {AngularFireStorage} from '@angular/fire/storage';
 import {finalize} from 'rxjs/operators';
-import {Observable} from "rxjs";
-import * as moment from "moment/moment";
-import {FileUpload} from "../../../model/file-upload";
-import {FileUploadService} from "../../../service/file-upload";
+import {Observable} from 'rxjs';
+import * as moment from 'moment/moment';
+import {FileUpload} from '../../../model/file-upload';
+import {FileUploadService} from '../../../service/file-upload';
 
 declare var Swal: any;
 
@@ -72,9 +72,10 @@ export class CreatSongComponent implements OnInit {
       avatarUrlSong: this.avatarUrlSong,
       mp3UrlSong: this.mp3UrlSong,
       user: this.user,
-      dateCreateSong: dateConvert
+      dateCreateSong: dateConvert,
+      numberOfViewSong: 0
     };
-    console.log(song)
+    console.log(song);
     this.songService.createSong(song).subscribe(res => {
       Swal.fire({
         position: 'center',
@@ -104,7 +105,7 @@ export class CreatSongComponent implements OnInit {
   // }
 
   submitAvatar() {
-    var n = Date.now();
+    let n = Date.now();
     // @ts-ignore
     const file = event.target.files[0];
     const filePath = `RoomsImages/${n}`;
@@ -118,14 +119,14 @@ export class CreatSongComponent implements OnInit {
             this.avatarUrlSong = url;
           }
           console.log(this.avatarUrlSong);
-        })
+        });
       })
     )
       .subscribe(url => {
         if (url) {
           console.log(url);
         }
-      })
+      });
   }
 
   // tslint:disable-next-line:typedef
@@ -154,6 +155,7 @@ export class CreatSongComponent implements OnInit {
   //   }
   // }
   selectFile(event: any): void {
+    this.showPreFile(event);
     this.selectedFiles = event.target.files;
     if (this.selectedFiles) {
       // @ts-ignore
@@ -173,7 +175,7 @@ export class CreatSongComponent implements OnInit {
   }
 
   submitFile() {
-    var n = Date.now();
+    let n = Date.now();
     // @ts-ignore
     const file = event.target.files[0];
     const filePath = `RoomsAudios/${n}`;
@@ -187,14 +189,14 @@ export class CreatSongComponent implements OnInit {
             this.mp3UrlSong = url;
           }
           console.log(this.mp3UrlSong);
-        })
+        });
       })
     )
       .subscribe(url => {
         if (url) {
           console.log(url);
         }
-      })
+      });
   }
 
   // tslint:disable-next-line:typedef

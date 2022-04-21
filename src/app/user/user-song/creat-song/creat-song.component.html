@@ -23,10 +23,10 @@
             <td style="padding-left: 60px;">Mô tả</td>
             <td><input type="text" formControlName="descriptionSong"></td>
           </tr>
-          <tr>
-            <td style="padding-left: 60px;">Tags</td>
-            <td><input type="text" formControlName="tags"></td>
-          </tr>
+<!--          <tr>-->
+<!--            <td style="padding-left: 60px;">Tags</td>-->
+<!--            <td><input type="text" formControlName="tags"></td>-->
+<!--          </tr>-->
           <tr>
             <td style="padding-top: 30px; padding-left: 60px"><img [src]="avatarUrlSong" alt="Lỗi hiển thị" width="50px"
                                                                    height="50px"></td>
@@ -34,11 +34,7 @@
           </tr>
           <tr>
             <td style="padding-left: 60px; padding-top: 40px">File MP3</td>
-            <td style=" padding-top: 40px" colspan="2"><input
-              type="file"
-              class="text-nowrap text-truncate"
-              (change)="selectFile($event)"
-            />
+            <td style=" padding-top: 40px" colspan="2"><input type="file" formControlName="mp3UrlSong" class="text-nowrap text-truncate" (change)="selectFile($event)"/>
               <div *ngIf="currentFileUpload" class="progress mt-2">
                 <div
                   class="progress-bar progress-bar-info"
@@ -61,7 +57,7 @@
           </tr>
           <tr>
             <td colspan="3">
-              <button type="submit" [disabled]="songForm.invalid">Tạo mới</button>
+              <button type="submit">Tạo mới</button>
               <button type="button" class="button-cancel" [routerLink]="['/home']">Thoát</button>
             </td>
           </tr>
